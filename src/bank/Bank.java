@@ -1,9 +1,15 @@
 package bank;
 
+import bank.clients.Client;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bank {
     private String name;
     private String adress;
     private int amountClients;
+    public List<Client> listClients = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -29,7 +35,7 @@ public class Bank {
         this.amountClients = amountClients;
     }
 
-    public Bank(String n, String a, double b) {
+    public Bank(String n, String a) {
         this.setName(n);
         this.setAdress(a);
     }

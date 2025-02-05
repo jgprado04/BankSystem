@@ -40,10 +40,10 @@ public class Client {
         this.totalBalance = totalBalance;
     }
 
-    public Client(String n, Bank b, double tB) {
+    public Client(String n, Bank b) {
         this.setName(n);
         this.setBank(b);
-        this.setTotalBalance(tB);
         b.setAmountClients(b.getAmountClients() + 1);
+        b.listClients.add(this);
     }
 }

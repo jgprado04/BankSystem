@@ -1,9 +1,10 @@
 package bank.clients.accounts;
 
 import bank.clients.Client;
+import bank.exceptions.BalanceException;
 
 public class ChekingAccount extends Account {
-    public ChekingAccount(Client c, double b) {
+    public ChekingAccount(Client c, double b) throws BalanceException {
         super(c, b);
     }
 

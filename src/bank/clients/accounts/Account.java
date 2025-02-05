@@ -1,6 +1,8 @@
 package bank.clients.accounts;
 
 import bank.clients.Client;
+import bank.clients.accounts.systems.SystemAccounts;
+import bank.exceptions.BalanceException;
 
 public abstract class Account {
     private Client client;
@@ -22,10 +24,13 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public Account(Client c, double b) {
+    public Account(Client c, double b) throws BalanceException {
+        if(b < 0) throw new BalanceException(b);
+
         this.setClient(c);
         this.setBalance(b);
 
+        SystemAccounts.addAccount(this, c);
         c.setAmountCounts(c.getAmountCounts() + 1);
     }
 
@@ -44,15 +49,19 @@ public abstract class Account {
         System.out.println("The value is incorrenct, please insire a correct value!");
     }
 
-    public void transfer(double value, String name) {
-        if(value > 0 && value <= this.balance) {
-            System.out.println("You are transfering " + value + "$ to " + name );
-            this.setBalance(this.getBalance() - value);
-            this.checkBalance();
-            return;
+    public void transfer(double value, Account account) {
+        if(!this.equals(account.getClient())) {
+            if(value > 0 && value <= this.balance) {
+                System.out.println("You are transfering " + value + "$ to " + account.getClient().getName());
+                this.setBalance(this.getBalance() - value);
+                account.setBalance(account.getBalance() + value);
+                this.checkBalance();
+                return;
+            }
+
+            String response = value <= 0 ? "The value than you are depositing is incorrect" : "Your balance is more lower than your value to deposit";
+            System.out.println(response);
         }
 
-        String response = value <= 0 ? "The value than you are depositing is incorrect" : "Your balance is more lower than your value to deposit";
-        System.out.println(response);
     }
 }

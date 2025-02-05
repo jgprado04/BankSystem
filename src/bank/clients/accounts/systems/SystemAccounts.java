@@ -9,7 +9,7 @@ import java.util.Map;
 public class SystemAccounts {
     public static Map<Account, Client> listAccountsInBank = new HashMap<>();
 
-    public static void addAccount(Account a) {
+    public static void addAccount(Account a, Client c) {
         listAccountsInBank.put(a, a.getClient());
     }
 

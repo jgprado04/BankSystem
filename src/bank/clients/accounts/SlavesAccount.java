@@ -1,9 +1,10 @@
 package bank.clients.accounts;
 
 import bank.clients.Client;
+import bank.exceptions.BalanceException;
 
 public class SlavesAccount extends Account {
-    public SlavesAccount(Client c, double b) {
+    public SlavesAccount(Client c, double b) throws BalanceException {
         super(c, b);
     }
 
