@@ -1,0 +1,4 @@
+Client: João Guilherme has a: 17000.0$ and 3 amounts of accounts 
+Client: Lorena Dias has a: 27500.0$ and 3 amounts of accounts 
+Client: Ana Paula has a: 10000.0$ and 1 amounts of accounts 
+Total value of balance in the bank: $54500.0

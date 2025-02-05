@@ -1,15 +1,12 @@
 package bank;
 
 import bank.clients.Client;
-import bank.clients.accounts.Account;
 import bank.clients.accounts.ChekingAccount;
 import bank.clients.accounts.SlavesAccount;
 import bank.clients.accounts.systems.AnalyseBalanceClient;
 import bank.clients.accounts.systems.MakeFile;
 import bank.exceptions.BalanceException;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class BankDemo {
@@ -44,10 +41,9 @@ public class BankDemo {
             // Operations in accounts ->
             ca1.transfer(2000, ca3);
 
-            // Analyse the balance total in all acconuts of clients ->
+            // Analyse the balance total in all accoount of clients ->
             System.out.println("Do you want to analyse the all balances in accounts of clients? ");
             if((response = scanner.nextLine()).equalsIgnoreCase("yes")) {
-                scanner.nextLine(); // Pra consumir o espaço vazio!
 
                 for(Client c: b1.listClients) {
                     System.out.println(c.getName() + " insire the number : " + count);
@@ -55,24 +51,22 @@ public class BankDemo {
                 }
 
                 System.out.println("Say your name, client: ");
+                AnalyseBalanceClient.analyse();
                 switch (clientResponse = scanner.nextInt()) {
                     case 1:
-                        AnalyseBalanceClient.analyse(c1);
                         System.out.println(c1.getName() + " your balance total is: " + c1.getTotalBalance() + "$.");
                         break;
                     case 2:
-                        AnalyseBalanceClient.analyse(c2);
                         System.out.println(c2.getName() + " your balance total is: " + c2.getTotalBalance() + "$.");
                         break;
                     case 3:
-                        AnalyseBalanceClient.analyse(c3);
                         System.out.println(c3.getName() + " your balance total is: " + c3.getTotalBalance() + "$.");
                         break;
                 }
             }
 
             // To creating file in the bank of all balance of accounts
-            MakeFile.makeFile("balancebank.txt");
+            MakeFile.makeFile("balancebank.txt", b1);
 
 
         } catch (BalanceException exc) {
